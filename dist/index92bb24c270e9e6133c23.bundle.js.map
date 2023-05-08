@@ -1,0 +1,1 @@
+{"version":3,"file":"index92bb24c270e9e6133c23.bundle.js","mappings":";;;;;;;;AAAA","sources":["webpack://todo-list/./src/index.js"],"sourcesContent":["document.body.innerHTML = '<h1>heeloo</h1>';\n"],"names":[],"sourceRoot":""}
