@@ -1,9 +1,13 @@
-import Todo from './classes/task';
+import Todo from './classes/todo';
 import Project from './classes/project';
+import { createTodo as createTodoDom } from './DOM/components/todoList';
 
-export default function todo() {
+export default function createTodo() {
 	const todoArray = [];
 	const projectArray = [];
+
+	const priority = ['Low', 'Medium', 'High'];
+
 	let activeProject;
 
 	const getTodos = () => {
@@ -14,12 +18,17 @@ export default function todo() {
 		return projectArray;
 	};
 
-	const createNewTodo = (title) => {
-		const todo = new Todo(title);
+	const getPriorityList = () => {
+		return priority;
+	};
+
+	const createNewTodo = (title, description, dueDate, priority, project) => {
+		const todo = new Todo(title, description, dueDate, priority, project);
 		if (activeProject) {
 			addTodoToProject(todo, activeProject);
 		}
 		saveTodo(todo);
+		document.querySelector('#todo-list').prepend(createTodoDom(todo));
 		return todo;
 	};
 
@@ -52,5 +61,6 @@ export default function todo() {
 		getProjects,
 		getTodos,
 		setActiveProject,
+		getPriorityList,
 	};
 }

@@ -1,7 +1,10 @@
-import todo from './todo';
+import createDOM from './DOM/dom';
+import createTodo from './todo';
 
-const newTodo = todo();
+export const todo = createTodo();
 
-newTodo.createNewTodo('Haha');
+createDOM();
 
-console.log(newTodo.getTodos());
+todo.createNewTodo('Haha');
+todo.createNewProject('Lol');
+todo.createNewProject('more lol');
