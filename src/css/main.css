@@ -81,3 +81,38 @@ main {
 		visibility: hidden;
 	}
 }
+
+/* Todo styles */
+#content {
+	width: 90%;
+	margin: 0 auto;
+}
+
+#content form {
+	border: 1px solid #b4b4b4;
+	border-radius: 1rem;
+	padding: 1.5em 2em;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+#content form input[type='text'] {
+	border: 0;
+	font-size: 1.125rem;
+}
+
+#content div:nth-child(3) {
+	display: flex;
+	gap: 1rem;
+}
+
+#content form input[type='date'],
+select {
+	padding: 0.25rem;
+	border: 1px solid #b4b4b4;
+	outline: none;
+	border-radius: 0.25rem;
+	color: #333;
+	background-color: #f1f1f1;
+}

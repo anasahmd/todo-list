@@ -20,7 +20,6 @@ export default function createTodoForm() {
 	const titleDiv = document.createElement('div');
 	todoForm.appendChild(titleDiv);
 	titleDiv.appendChild(createTitleInput());
-	titleDiv.classList.add('my-5');
 
 	const descriptionDiv = document.createElement('div');
 	todoForm.appendChild(descriptionDiv);

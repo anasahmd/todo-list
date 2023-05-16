@@ -24,7 +24,7 @@ function createSidebar() {
 	const defaultSidebar = todo.getDefaultSidebar();
 	const sidebar = document.createElement('div');
 	sidebar.id = 'sidebar';
-	sidebar.classList.add('sidebar');
+	sidebar.classList.add('sidebar', 'hidden');
 
 	const content = document.createElement('div');
 	sidebar.appendChild(content);
@@ -55,9 +55,9 @@ function createSidebar() {
 function createOption(option) {
 	const optionDiv = document.createElement('div');
 	optionDiv.classList.add('sidebar-select');
+	optionDiv.id = `project-${option.toLowerCase()}`;
 	optionDiv.addEventListener('click', () => {
 		todo.setActiveSidebar(option);
-		addSelected(optionDiv);
 	});
 	optionDiv.innerHTML = option;
 	return optionDiv;
@@ -83,16 +83,7 @@ export function createProjectSelector(project) {
 	projectSelector.innerHTML = project.title;
 	projectSelector.addEventListener('click', (e) => {
 		todo.setActiveSidebar(project);
-		addSelected(projectSelector);
 	});
-}
-
-function addSelected(div) {
-	const sidebarSelect = document.querySelectorAll('.sidebar-select');
-	for (let option of sidebarSelect) {
-		option.classList.remove('active');
-	}
-	div.classList.add('active');
 }
 
 export function sidebarHideHandler() {

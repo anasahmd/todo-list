@@ -1,4 +1,5 @@
 import globalCss from '../css/global.css';
+import normalize from '../css/normalize.css';
 import createHeader from './header';
 import createMain from './main';
 

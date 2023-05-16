@@ -13,8 +13,6 @@ export default function createTodo() {
 
 	let activeProject;
 
-	let activeSidebar = 'All';
-
 	const getDefaultSidebar = () => {
 		return defaultSidebar;
 	};
@@ -66,8 +64,19 @@ export default function createTodo() {
 	};
 
 	const setActiveSidebar = (project) => {
-		console.log(project);
 		activeProject = project;
+		const div = document.getElementById(
+			`project-${project.id ? project.id : project.toLowerCase()}`
+		);
+		addSelected(div);
+	};
+
+	const addSelected = (div) => {
+		const sidebarSelect = document.querySelectorAll('.sidebar-select');
+		for (let option of sidebarSelect) {
+			option.classList.remove('active');
+		}
+		div.classList.add('active');
 	};
 
 	return {
