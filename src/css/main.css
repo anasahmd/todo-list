@@ -53,6 +53,10 @@ main {
 	font-size: 1.125rem;
 }
 
+.sidebar-select.active {
+	background-color: #f1f1f1;
+}
+
 .sidebar-select:hover {
 	background-color: #f1f1f1;
 }

@@ -53,10 +53,14 @@ function createSidebar() {
 }
 
 function createOption(option) {
-	const div = document.createElement('div');
-	div.classList.add('sidebar-select');
-	div.innerHTML = option;
-	return div;
+	const optionDiv = document.createElement('div');
+	optionDiv.classList.add('sidebar-select');
+	optionDiv.addEventListener('click', () => {
+		todo.setActiveSidebar(option);
+		addSelected(optionDiv);
+	});
+	optionDiv.innerHTML = option;
+	return optionDiv;
 }
 
 function createProjectDiv(projects) {
@@ -78,7 +82,29 @@ export function createProjectSelector(project) {
 	document.getElementById('project-div').appendChild(projectSelector);
 	projectSelector.innerHTML = project.title;
 	projectSelector.addEventListener('click', (e) => {
-		todo.setActiveProject(project);
-		console.log(todo.getActiveProject());
+		todo.setActiveSidebar(project);
+		addSelected(projectSelector);
 	});
 }
+
+function addSelected(div) {
+	const sidebarSelect = document.querySelectorAll('.sidebar-select');
+	for (let option of sidebarSelect) {
+		option.classList.remove('active');
+	}
+	div.classList.add('active');
+}
+
+export function sidebarHideHandler() {
+	document.getElementById('sidebar').classList.toggle('hidden');
+}
+
+//Hide show sidebar on big screen
+window.onresize = () => {
+	let viewportWidth = window.innerWidth;
+	if (viewportWidth >= 768) {
+		document.getElementById('sidebar').classList.remove('hidden');
+	} else {
+		document.getElementById('sidebar').classList.add('hidden');
+	}
+};

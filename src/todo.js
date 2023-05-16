@@ -13,6 +13,8 @@ export default function createTodo() {
 
 	let activeProject;
 
+	let activeSidebar = 'All';
+
 	const getDefaultSidebar = () => {
 		return defaultSidebar;
 	};
@@ -59,11 +61,12 @@ export default function createTodo() {
 		projectArray.push(project);
 	};
 
-	const getActiveProject = () => {
+	const getActiveSidebar = () => {
 		return activeProject;
 	};
 
-	const setActiveProject = (project) => {
+	const setActiveSidebar = (project) => {
+		console.log(project);
 		activeProject = project;
 	};
 
@@ -72,8 +75,8 @@ export default function createTodo() {
 		createNewProject,
 		getProjects,
 		getTodos,
-		getActiveProject,
-		setActiveProject,
+		getActiveSidebar,
+		setActiveSidebar,
 		getPriorityList,
 		getDefaultSidebar,
 	};

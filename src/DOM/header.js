@@ -1,5 +1,6 @@
 import burgerMenuSvg from '../images/burger-menu.svg';
 import headerCss from '../css/header.css';
+import { sidebarHideHandler } from './main';
 
 export default function createHeader() {
 	const header = document.createElement('header');
@@ -28,24 +29,3 @@ function createNavbar() {
 
 	return nav;
 }
-
-export function createProjectSelector(project) {
-	const projectSelector = document.createElement('div');
-	projectSelector.classList.add('sidebar-select');
-	document.getElementById('project-div').appendChild(projectSelector);
-	projectSelector.innerHTML = project.title;
-}
-
-function sidebarHideHandler() {
-	document.getElementById('sidebar').classList.toggle('hidden');
-}
-
-//Hide show sidebar on big screen
-window.onresize = () => {
-	let viewportWidth = window.innerWidth;
-	if (viewportWidth >= 768) {
-		document.getElementById('sidebar').classList.remove('hidden');
-	} else {
-		document.getElementById('sidebar').classList.add('hidden');
-	}
-};
