@@ -1,14 +1,21 @@
 import Todo from './classes/todo';
 import Project from './classes/project';
 import { createTodo as createTodoDom } from './DOM/components/todoList';
+import { createProjectSelector } from './DOM/main';
 
 export default function createTodo() {
 	const todoArray = [];
 	const projectArray = [];
 
+	const defaultSidebar = ['All', 'Today', 'Upcoming', 'Important', 'Completed'];
+
 	const priority = ['Low', 'Medium', 'High'];
 
 	let activeProject;
+
+	const getDefaultSidebar = () => {
+		return defaultSidebar;
+	};
 
 	const getTodos = () => {
 		return todoArray;
@@ -44,11 +51,16 @@ export default function createTodo() {
 	const createNewProject = (title) => {
 		const project = new Project(title);
 		saveProject(project);
+		createProjectSelector(project);
 		return project;
 	};
 
 	const saveProject = (project) => {
 		projectArray.push(project);
+	};
+
+	const getActiveProject = () => {
+		return activeProject;
 	};
 
 	const setActiveProject = (project) => {
@@ -60,7 +72,9 @@ export default function createTodo() {
 		createNewProject,
 		getProjects,
 		getTodos,
+		getActiveProject,
 		setActiveProject,
 		getPriorityList,
+		getDefaultSidebar,
 	};
 }

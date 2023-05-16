@@ -4,7 +4,6 @@ import headerCss from '../css/header.css';
 export default function createHeader() {
 	const header = document.createElement('header');
 	header.appendChild(createNavbar());
-	header.appendChild(createSidebar());
 	return header;
 }
 
@@ -16,7 +15,7 @@ function createNavbar() {
 	hamburger.id = 'hamburger';
 
 	hamburger.addEventListener('click', () => {
-		document.getElementById('sidebar').classList.toggle('hidden');
+		sidebarHideHandler();
 	});
 
 	const hamburgerIcon = document.createElement('img');
@@ -30,22 +29,23 @@ function createNavbar() {
 	return nav;
 }
 
-function createSidebar() {
-	const sidebar = document.createElement('div');
-	sidebar.id = 'sidebar';
-	sidebar.classList.add('sidebar', 'hidden');
-
-	const content = document.createElement('div');
-	sidebar.appendChild(content);
-	content.classList.add('content');
-
-	const all = document.createElement('div');
-	content.appendChild(all);
-	all.innerHTML = 'All Todos';
-
-	const overlay = document.createElement('div');
-	sidebar.appendChild(overlay);
-	overlay.classList.add('overlay');
-
-	return sidebar;
+export function createProjectSelector(project) {
+	const projectSelector = document.createElement('div');
+	projectSelector.classList.add('sidebar-select');
+	document.getElementById('project-div').appendChild(projectSelector);
+	projectSelector.innerHTML = project.title;
 }
+
+function sidebarHideHandler() {
+	document.getElementById('sidebar').classList.toggle('hidden');
+}
+
+//Hide show sidebar on big screen
+window.onresize = () => {
+	let viewportWidth = window.innerWidth;
+	if (viewportWidth >= 768) {
+		document.getElementById('sidebar').classList.remove('hidden');
+	} else {
+		document.getElementById('sidebar').classList.add('hidden');
+	}
+};
