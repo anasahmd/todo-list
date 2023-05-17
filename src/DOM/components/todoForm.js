@@ -41,14 +41,29 @@ export default function createTodoForm() {
 
 function createSelectProject() {
 	const selectProject = document.createElement('select');
+
+	selectProjectHandler(selectProject);
+	selectProject.addEventListener('mousedown', () => {
+		selectProjectHandler(selectProject);
+	});
+
+	selectProject.setAttribute('type', 'select');
+	selectProject.setAttribute('name', 'project');
+	return selectProject;
+}
+
+function selectProjectHandler(selectProject) {
+	selectProject.innerHTML = '';
+	const disabledOption = document.createElement('option');
+	selectProject.appendChild(disabledOption);
+	disabledOption.innerText = 'Project';
+	disabledOption.selected = true;
+	disabledOption.disabled = true;
 	const projects = todo.getProjects();
 	for (let project of projects) {
 		const option = createOption(project.title);
 		selectProject.appendChild(option);
 	}
-	selectProject.setAttribute('type', 'select');
-	selectProject.setAttribute('name', 'project');
-	return selectProject;
 }
 
 function createOption(value) {
@@ -83,6 +98,11 @@ function createDateInput() {
 
 function createSelectPriority(list) {
 	const selectPriority = document.createElement('select');
+	const disabledOption = document.createElement('option');
+	selectPriority.appendChild(disabledOption);
+	disabledOption.innerText = 'Priority';
+	disabledOption.selected = true;
+	disabledOption.disabled = true;
 	for (let priority of list) {
 		const option = createOption(priority);
 		selectPriority.appendChild(option);

@@ -1,6 +1,6 @@
 import Todo from './classes/todo';
 import Project from './classes/project';
-import { createTodo as createTodoDom } from './DOM/components/todoList';
+import { createTodo as createTodoDom } from './DOM/components/todo';
 import { createProjectSelector } from './DOM/main';
 
 export default function createTodo() {

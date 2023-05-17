@@ -1,6 +1,6 @@
 import mainCss from '../css/main.css';
 
-import createTodoList from './components/todoList';
+import createTodoList, { createNewTodoLink } from './components/todo';
 import createTodoForm from './components/todoForm';
 import { todo } from '..';
 
@@ -16,8 +16,17 @@ function createContent() {
 	const content = document.createElement('div');
 	content.id = 'content';
 	content.appendChild(createTodoList());
-	content.appendChild(createTodoForm());
+	content.appendChild(createNewTodoDOM());
 	return content;
+}
+
+function createNewTodoDOM() {
+	const createTodo = document.createElement('div');
+	createTodo.id = 'new-todo';
+	createTodo.classList.add('new-todo');
+
+	createTodo.appendChild(createNewTodoLink());
+	return createTodo;
 }
 
 function createSidebar() {
