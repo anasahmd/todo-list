@@ -1,5 +1,7 @@
 import { todo } from '../../index';
 import plusSvg from '../../images/plus.svg';
+import circleSvg from '../../images/circle.svg';
+import checkboxSvg from '../../images/checkbox.svg';
 import createTodoForm from './todoForm';
 
 export default function createTodoList() {
@@ -7,24 +9,41 @@ export default function createTodoList() {
 	todoList.id = 'todo-list';
 	const todos = todo.getTodos();
 	for (let todo of todos) {
-		todoList.appendChild(createTodo(todo));
+		todoList.appendChild(createTodoDom(todo));
 	}
 	return todoList;
 }
 
-export function createTodo(val) {
-	const todo = document.createElement('div');
-	todo.classList.add('todo-container');
+export function createTodoDom(val) {
+	const todoDom = document.createElement('div');
+	todoDom.classList.add('todo-container');
 
 	const checkBox = document.createElement('div');
+	const checkBoxIcon = document.createElement('img');
+	if (val.done) {
+		checkBoxIcon.src = checkboxSvg;
+	} else {
+		checkBoxIcon.src = circleSvg;
+	}
+	checkBox.addEventListener('click', () => {
+		console.log(val);
+		if (val.done) {
+			todo.setTodoDone(val, false);
+			checkBoxIcon.src = circleSvg;
+		} else {
+			todo.setTodoDone(val, true);
+			checkBoxIcon.src = checkboxSvg;
+		}
+	});
+	checkBox.appendChild(checkBoxIcon);
 	checkBox.classList.add('check-box');
-	todo.appendChild(checkBox);
+	todoDom.appendChild(checkBox);
 
-	const title = document.createElement('div');
-	todo.appendChild(title);
+	const title = document.createElement('h4');
+	todoDom.appendChild(title);
 	title.innerHTML = val.title;
 
-	return todo;
+	return todoDom;
 }
 
 export function createNewTodoLink() {

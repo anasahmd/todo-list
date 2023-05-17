@@ -1,6 +1,6 @@
 import Todo from './classes/todo';
 import Project from './classes/project';
-import { createTodo as createTodoDom } from './DOM/components/todo';
+import { createTodoDom } from './DOM/components/todoDom';
 import { createProjectSelector } from './DOM/main';
 
 export default function createTodo() {
@@ -40,12 +40,18 @@ export default function createTodo() {
 	};
 
 	const addTodoToProject = (todo, project) => {
-		project.newTodo = todo.id;
-		todo.project = project.title;
+		if (project.title) {
+			project.newTodo = todo.id;
+			todo.project = project.title;
+		}
 	};
 
 	const saveTodo = (todo) => {
 		todoArray.push(todo);
+	};
+
+	const setTodoDone = (todo, bool) => {
+		todo.done = bool;
 	};
 
 	const createNewProject = (title) => {
@@ -84,6 +90,7 @@ export default function createTodo() {
 		createNewProject,
 		getProjects,
 		getTodos,
+		setTodoDone,
 		getActiveSidebar,
 		setActiveSidebar,
 		getPriorityList,

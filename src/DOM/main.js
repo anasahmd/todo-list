@@ -1,6 +1,6 @@
 import mainCss from '../css/main.css';
 
-import createTodoList, { createNewTodoLink } from './components/todo';
+import createTodoList, { createNewTodoLink } from './components/todoDom';
 import createTodoForm from './components/todoForm';
 import { todo } from '..';
 

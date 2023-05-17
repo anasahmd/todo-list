@@ -143,3 +143,24 @@ select {
 	font-weight: 400;
 	font-size: 1.125rem;
 }
+
+.todo-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+	padding: 1rem 0;
+}
+
+.todo-container:hover {
+}
+
+.todo-container img {
+	margin-top: 4px;
+	width: 1.125rem;
+}
+
+.todo-container h4 {
+	font-weight: 400;
+	font-size: 1.125rem;
+}
